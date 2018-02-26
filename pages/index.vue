@@ -26,6 +26,9 @@
       EntriesPage,
       EntriesList
     },
+    async fetch ({ store, params }) {
+      await store.dispatch('fetchParams');
+    },
     async asyncData ({ app, store, params, query, error }) {
       let asyncData
       //let apiUrl = 'http://localhost:3000/api/v1';

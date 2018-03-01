@@ -1,22 +1,3 @@
-# planfix-toggl
+# planfix-toggl-client
 
-> Send metrics from Toggl to Planfix
-
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+Клиент для [planfix-toggl-server](https://github.com/viasite/planfix-toggl-server), сам по себе ценности не представляет.

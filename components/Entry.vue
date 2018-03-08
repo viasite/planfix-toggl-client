@@ -1,7 +1,7 @@
 <template>
   <v-ons-card class="entry">
     <span class="entry__group-count">{{ entry.planfix.group_count }}</span>
-    <span class="entry__name">{{ entry.description }}</span>
+    <span class="entry__name">{{ entry.description | rejoin(', ') }}</span>
     <span class="entry__duration">{{ (entry.dur / 1000 / 60) | round }}</span>
     <div class="entry__second">
       <span class="entry__project" :style="'color:' + entry.project_hex_color">{{ entry.project }}</span>
@@ -48,7 +48,10 @@
       }
     },
     filters: {
-      round: value => Math.round(value)
+      round: value => Math.round(value),
+      replace: (value, search, replace) => value.replace(search, replace),
+      rejoin: (value, delim) => value.split('\n').join(delim),
+      brize: (value, search, replace) => value.replace("\n", "<br>")
     }
   }
 </script>

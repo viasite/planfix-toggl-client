@@ -30,9 +30,8 @@
       await store.dispatch('fetchParams');
     },
     async asyncData ({ app, store, params, query, error }) {
-      let asyncData
-      //let apiUrl = 'http://localhost:3000/api/v1';
-      let apiUrl = 'http://localhost:8096/api/v1';
+      let asyncData;
+      let apiUrl = store.state.apiUrl;
       try {
         asyncData = {
           entries_today: await app.$axios.$get(apiUrl + '/toggl/entries', { params: {type:'today'} }),

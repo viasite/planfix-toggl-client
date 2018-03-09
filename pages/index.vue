@@ -1,65 +1,79 @@
 <template>
   <div>
-    <v-ons-tabbar position="auto" swipeable :index.sync="index" :visible="true">
-      <template slot="pages">
-        <EntriesPage v-for="tab in tabs"
-          v-bind:key="tab.label"
-          :entries="tab.props.entries"
-          :label="tab.label"
-        ></EntriesPage>
-      </template>
+    <PageToolbar title="planfix-toggl" :action="() => openSide = !openSide"></PageToolbar>
+    <v-ons-splitter>
+      <v-ons-splitter-side
+        swipeable width="150px" collapse="" side="right"
+        :open.sync="openSide"
+      >
+        <v-ons-page>
+          <v-ons-list>
+            <v-ons-list-item v-for="page in pages" v-bind:key="page.name"
+                             tappable
+                             @click="currentPage = page.page; openSide = false"
+            >
+              <div class="center">{{ page.name }}</div>
+            </v-ons-list-item>
+          </v-ons-list>
+        </v-ons-page>
+      </v-ons-splitter-side>
 
-      <v-ons-tab v-for="tab in tabs"
-        v-bind:key="tab.label"
-        :label="tab.label + ' (' + tab.props.entries.length + ')'"
-      ></v-ons-tab>
-    </v-ons-tabbar>
+      <v-ons-splitter-content>
+        <component :is="currentPage"></component>
+      </v-ons-splitter-content>
+    </v-ons-splitter>
   </div>
 </template>
 
 <script>
-  import EntriesList from '~/components/EntriesList'
-  import EntriesPage from '~/pages/EntriesPage'
+  import PageToolbar from '~/components/PageToolbar'
+  import EntriesTabsPage from '~/pages/EntriesTabsPage'
 
   export default {
     components: {
-      EntriesPage,
-      EntriesList
+      EntriesTabsPage,
+      PageToolbar,
     },
+    computed: {},
     async fetch ({ store, params }) {
-      await store.dispatch('fetchParams');
+      // store config in state
+      await store.dispatch('fetchConfig');
     },
-    async asyncData ({ app, store, params, query, error }) {
+    async asyncData({app, store, params, query, error}) {
       let asyncData;
       let apiUrl = store.state.apiUrl;
       try {
         asyncData = {
-          entries_today: await app.$axios.$get(apiUrl + '/toggl/entries', { params: {type:'today'} }),
-          entries_pending: await app.$axios.$get(apiUrl + '/toggl/entries', { params: {type:'pending'} }),
-          entries_last: await app.$axios.$get(apiUrl + '/toggl/entries', { params: {type:'last'} }),
-        }
-        asyncData.tabs = [
-          { label: 'Сегодня', props: { entries: asyncData.entries_today } },
-          { label: 'Ожидают', props: { entries: asyncData.entries_pending } },
-          { label: 'Последние', props: { entries: asyncData.entries_last } },
-        ]
+          entries_today: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'today'}}),
+          entries_pending: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'pending'}}),
+          entries_last: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'last'}}),
+        };
 
-        //console.log(asyncData.tabs);
-      } catch (e) {
-        console.log('error while get data')
+        asyncData.tabs = [
+          {label: 'Сегодня', props: {entries: asyncData.entries_today}},
+          {label: 'Ожидают', props: {entries: asyncData.entries_pending}},
+          {label: 'Последние', props: {entries: asyncData.entries_last}},
+        ];
+
+        asyncData.pages = [
+          {name: '', page: ''},
+          {name: 'Записи', page: EntriesTabsPage},
+        ];
+
+        console.log('commit tabs');
+        store.commit('tabs', asyncData.tabs);
+      }
+      catch (e) {
+        console.log('error while get data');
         throw Error(e)
       }
       return asyncData;
     },
-    computed: {
-      index: {
-        get(){
-          return this.$store.state.tabIndex
-        },
-        set(newValue){
-          this.$store.commit('tabIndex', newValue)
-        }
+    data() {
+      return {
+        currentPage: 'EntriesTabsPage',
+        openSide: false
       }
-    }
+    },
   }
 </script>

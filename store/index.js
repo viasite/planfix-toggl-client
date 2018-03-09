@@ -1,17 +1,25 @@
 let apiUrl = 'https://localhost:8097/api/v1';
 
 export const state = () => ({
-  planfixAccount: '',
-  apiUrl: 'https://localhost:8097/api/v1',
-  tabIndex: 0
+  apiUrl: apiUrl,
+  tabIndex: 0,
+  tabs: [],
+  title: 'planfix-toggl',
+  config: {},
 });
 
 export const mutations = {
   tabIndex: (state, newValue) => {
     state.tabIndex = newValue
   },
-  planfixAccount: (state, newValue) => {
-    state.planfixAccount = newValue
+  config: (state, newValue) => {
+    state.config = newValue
+  },
+  tabs: (state, newValue) => {
+    state.tabs = newValue
+  },
+  title: (state, newValue) => {
+    state.title = newValue
   },
   apiUrl: (state, newValue) => {
     state.apiUrl = newValue
@@ -19,8 +27,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async fetchParams ({ commit }) {
-    const { data } = await this.$axios.get(apiUrl + '/params');
-    commit('planfixAccount', data.planfix_account);
+  async fetchConfig ({ commit }) {
+    const { data } = await this.$axios.get(apiUrl + '/config');
+    commit('config', data);
   }
 };

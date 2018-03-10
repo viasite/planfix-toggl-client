@@ -1,5 +1,5 @@
 <template>
-  <v-ons-list-item>
+  <v-ons-list-item @sended="setDescription">
     <div class="center">
       <span class="list-item__title">{{ name }}</span>
       <span class="list-item__subtitle">{{ description }}</span>
@@ -34,7 +34,6 @@
       </v-ons-button>
     </div>
   </v-ons-list-item>
-
 </template>
 
 <script type="text/javascript">
@@ -56,10 +55,16 @@
         await this.$axios.post(this.$store.state.apiUrl + '/config/reload');
 
         // action
-        this.description = await this.action(event);
+        let message = await this.action(event);
 
-        console.log(this.description);
+        this.$emit('sended', message);
+        console.log(message);
         this.isSending = false;
+      },
+      setDescription(description){
+        // никогда не срабатывает
+        console.log('setDescription');
+        this.description = description
       },
       delayedStoreConfig() {
         let self = this;

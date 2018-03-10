@@ -1,8 +1,14 @@
 <template>
   <v-ons-list-item>
     <div class="center">
-      <span class="list-item__title">{{ name }}</span>
-      <span class="list-item__subtitle">{{ text }}</span>
+      <span class="list-item__title" v-html="name"></span>
+      <span class="list-item__subtitle"
+            v-html="text"
+            v-bind:class="{
+              'list-item__subtitle--success': success === true,
+              'list-item__subtitle--error': success === false
+            }"
+      ></span>
 
       <!-- input -->
       <v-ons-input v-if="['text', 'number', 'password'].includes(type)"
@@ -36,20 +42,28 @@
   </v-ons-list-item>
 </template>
 
+<style type="text/css">
+  .list-item__subtitle--success { color: #060; }
+  .list-item__subtitle--error { color: #600; }
+</style>
+
 <script type="text/javascript">
   export default {
     props: ['name', 'configName', 'type', 'min', 'max', 'action', 'buttonName', 'description'],
-    data () {
+    data() {
       return {
         message: null,
+        success: null,
         isSending: false
       }
     },
     computed: {
-      text: function(){ return this.message || this.description },
+      text() {
+        return this.message || this.description
+      },
     },
     methods: {
-      async checkAction(event){
+      async checkAction(event) {
         this.isSending = true;
 
         // store config
@@ -58,17 +72,14 @@
         await this.$axios.post(this.$store.state.apiUrl + '/config/reload');
 
         // action
-        let message = await this.action(event);
+        let {success, message} = await this.action(event);
 
+        this.success = success;
         this.message = message;
         console.log(message);
         this.isSending = false;
       },
-      setDescription(description){
-        // никогда не срабатывает
-        console.log('setDescription');
-        this.description = description
-      },
+
       delayedStoreConfig() {
         let self = this;
         let config = JSON.parse(JSON.stringify(this.$store.state.config));

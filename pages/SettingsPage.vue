@@ -249,17 +249,17 @@
         let message = '';
         // GET /api/v1/planfix/user
         let {data} = await this.$axios.get(this.$store.state.apiUrl + '/planfix/user');
+        let success = data.data && data.data.ID && !data.errors;
 
         // commit message
-        let time = new Date().toTimeString().substring(0, 8);
-        if (data.data && data.data.ID) {
-          message = 'Подключение успешно, ' + data.data.Name + ' ' + data.data.LastName + ', в ' + time;
+        if (success) {
+          message = 'Подключение успешно, ' + data.data.Name + ' ' + data.data.LastName;
         }
         else {
-          message = 'Подключение не удалось в ' + time + ': ' + data.errors.join(', ');
+          message = 'Подключение не удалось: ' + data.errors.join(', ');
         }
 
-        return message;
+        return { success, message };
       },
 
       // проверяет подключение к Toggl и правильность workspace id
@@ -267,11 +267,11 @@
         let message = '';
         // GET /api/v1/planfix/user
         let {data} = await this.$axios.get(this.$store.state.apiUrl + '/toggl/user');
+        let success = data.data && data.data.id && !data.errors;
 
         // commit message
-        let time = new Date().toTimeString().substring(0, 8);
-        if (data.data && data.data.id) {
-          message = 'Подключение успешно в ' + time;
+        if (success) {
+          message = 'Подключение успешно';
 
           // check workspace id
           let {data} = await this.$axios.get(this.$store.state.apiUrl + '/toggl/workspaces');
@@ -280,6 +280,7 @@
           let w = data.data.filter(workspace => workspace.id == this.$store.state.config.TogglWorkspaceID)
           if (w.length == 0) {
             message = 'Подкючение удалось, но workspace id ' + this.$store.state.config.TogglWorkspaceID + ' не найден';
+            success = false;
           }
           else {
             message = 'Подкючение удалось, иcпользуется ' + w[0].name;
@@ -287,10 +288,10 @@
           message += '. ' + workspacesMsg;
         }
         else {
-          message = 'Подключение не удалось в ' + time + ': ' + data.errors.join(', ');
+          message = 'Подключение не удалось: ' + data.errors.join(', ');
         }
 
-        return message;
+        return { success, message };
       },
 
       // проверяет правильность аналитики Планфикса
@@ -298,17 +299,17 @@
         let message = '';
         // GET /api/v1/planfix/user
         let {data} = await this.$axios.get(this.$store.state.apiUrl + '/planfix/analitic-ids');
+        let success = data.data && data.data.ID && !data.errors;
 
         // commit message
-        let time = new Date().toTimeString().substring(0, 8);
-        if (!data.errors) {
-          message = 'Аналитика указана правильно в ' + time;
+        if (success) {
+          message = 'Аналитика указана правильно';
         }
         else {
           message = data.errors.join(', ');
         }
 
-        return message;
+        return { success, message };
       }
     }
   }

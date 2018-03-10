@@ -1,16 +1,15 @@
 <template>
   <div>
-    <PageToolbar title="planfix-toggl" :action="() => openSide = !openSide"></PageToolbar>
     <v-ons-splitter>
       <v-ons-splitter-side
         swipeable width="150px" collapse="" side="right"
-        :open.sync="openSide"
+        :open.sync="$store.state.openSide"
       >
         <v-ons-page>
           <v-ons-list>
             <v-ons-list-item v-for="page in pages" v-bind:key="page.name"
                              tappable
-                             @click="currentPage = page.page; openSide = false"
+                             @click="currentPage = page.page; $store.state.openSide = false; $store.state.title = page.name"
             >
               <div class="center">{{ page.name }}</div>
             </v-ons-list-item>
@@ -28,10 +27,12 @@
 <script>
   import PageToolbar from '~/components/PageToolbar'
   import EntriesTabsPage from '~/pages/EntriesTabsPage'
+  import SettingsPage from '~/pages/SettingsPage'
 
   export default {
     components: {
       EntriesTabsPage,
+      SettingsPage,
       PageToolbar,
     },
     computed: {},
@@ -56,11 +57,10 @@
         ];
 
         asyncData.pages = [
-          {name: '', page: ''},
           {name: 'Записи', page: EntriesTabsPage},
+          {name: 'Настройки', page: SettingsPage},
         ];
 
-        console.log('commit tabs');
         store.commit('tabs', asyncData.tabs);
       }
       catch (e) {

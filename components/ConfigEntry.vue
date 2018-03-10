@@ -14,7 +14,7 @@
       <v-ons-input v-if="['text', 'number', 'password'].includes(type)"
                    :type="type" style="width:100%"
                    v-model="$store.state.config[configName]"
-                   v-on:change="delayedStoreConfig"
+                   @input="delayedStoreConfig"
       ></v-ons-input>
 
       <!-- slider -->
@@ -22,6 +22,7 @@
                    v-model="$store.state.config[configName]"
                    :min="min" :max="max"
                    style="width: 100%;"
+                   @input="delayedStoreConfig"
       ></v-ons-range>
     </div>
 
@@ -29,7 +30,7 @@
     <div class="right" v-if="type=='switch'">
       <v-ons-switch
         v-model="$store.state.config[configName]"
-        v-on:change="delayedStoreConfig"
+        @input="delayedStoreConfig"
       ></v-ons-switch>
     </div>
 
@@ -86,10 +87,14 @@
         let isequal = isEqual;
         let self = this;
         let config;
-        setTimeout(() => { config = JSON.parse(JSON.stringify(this.$store.state.config)) }, 100);
+        // console.log('try to save...');
+        setTimeout(() => {
+          config = JSON.parse(JSON.stringify(this.$store.state.config))
+        }, 100);
         setTimeout(() => {
           let newConfig = JSON.parse(JSON.stringify(self.$store.state.config));
-          if (!isequal(config, newConfig)) {
+          if (isequal(config, newConfig)) {
+            // console.log('saving!');
             self.$store.dispatch('storeConfig');
           }
         }, 2000)

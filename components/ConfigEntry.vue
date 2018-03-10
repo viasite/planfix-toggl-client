@@ -48,13 +48,15 @@
 </style>
 
 <script type="text/javascript">
+  import isEqual from 'lodash/isEqual';
+
   export default {
     props: ['name', 'configName', 'type', 'min', 'max', 'action', 'buttonName', 'description'],
     data() {
       return {
-        message: null,
         success: null,
-        isSending: false
+        message: null,
+        isSending: false,
       }
     },
     computed: {
@@ -74,25 +76,22 @@
         // action
         let {success, message} = await this.action(event);
 
+        this.isSending = false;
         this.success = success;
         this.message = message;
         console.log(message);
-        this.isSending = false;
       },
 
       delayedStoreConfig() {
+        let isequal = isEqual;
         let self = this;
-        let config = JSON.parse(JSON.stringify(this.$store.state.config));
+        let config;
+        setTimeout(() => { config = JSON.parse(JSON.stringify(this.$store.state.config)) }, 100);
         setTimeout(() => {
           let newConfig = JSON.parse(JSON.stringify(self.$store.state.config));
-          // always false
-          if (config == newConfig) {
-            console.log('config not modified for last 2 sec');
+          if (!isequal(config, newConfig)) {
+            self.$store.dispatch('storeConfig');
           }
-          else {
-            console.log('config modified');
-          }
-          self.$store.dispatch('storeConfig');
         }, 2000)
       },
     }

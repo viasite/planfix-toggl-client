@@ -276,7 +276,7 @@
           // check workspace id
           let {data} = await this.$axios.get(this.$store.state.apiUrl + '/toggl/workspaces');
           let workspaces = data.data.map(w => w.id + ' (' + w.name + ')');
-          let workspacesMsg = 'Доступные workspaces: ' + workspaces.join(', ');
+          let workspacesMsg = '<br>Доступные workspaces:<br> ' + workspaces.join(',<br>');
           let w = data.data.filter(workspace => workspace.id == this.$store.state.config.TogglWorkspaceID)
           if (w.length == 0) {
             message = 'Подкючение удалось, но workspace id ' + this.$store.state.config.TogglWorkspaceID + ' не найден';

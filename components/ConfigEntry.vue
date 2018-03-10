@@ -1,8 +1,8 @@
 <template>
-  <v-ons-list-item @sended="setDescription">
+  <v-ons-list-item>
     <div class="center">
       <span class="list-item__title">{{ name }}</span>
-      <span class="list-item__subtitle">{{ description }}</span>
+      <span class="list-item__subtitle">{{ text }}</span>
 
       <!-- input -->
       <v-ons-input v-if="['text', 'number', 'password'].includes(type)"
@@ -41,9 +41,12 @@
     props: ['name', 'configName', 'type', 'min', 'max', 'action', 'buttonName', 'description'],
     data () {
       return {
-        // description: '',
+        message: null,
         isSending: false
       }
+    },
+    computed: {
+      text: function(){ return this.message || this.description },
     },
     methods: {
       async checkAction(event){
@@ -57,7 +60,7 @@
         // action
         let message = await this.action(event);
 
-        this.$emit('sended', message);
+        this.message = message;
         console.log(message);
         this.isSending = false;
       },

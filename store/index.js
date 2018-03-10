@@ -26,7 +26,7 @@ export const mutations = {
   },
   apiUrl: (state, newValue) => {
     state.apiUrl = newValue
-  }
+  },
 };
 
 export const actions = {

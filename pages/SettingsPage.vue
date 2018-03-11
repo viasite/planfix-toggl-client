@@ -245,32 +245,32 @@
     },
     methods: {
       // проверяет подключение к Планфиксу
-      async checkPlanfixConnection(event) {
+      async checkPlanfixConnection() {
         let message = '';
-        // GET /api/v1/planfix/user
-        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/planfix/user');
-        let success = data.data && data.data.ID && !data.errors;
+        // GET /api/v1/validate/planfix/user
+        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/validate/planfix/user');
+        let {ok, errors} = data;
 
         // commit message
-        if (success) {
+        if (ok) {
           message = 'Подключение успешно, ' + data.data.Name + ' ' + data.data.LastName;
         }
         else {
-          message = 'Подключение не удалось: ' + data.errors.join(', ');
+          message = 'Подключение не удалось: ' + errors.join(', ');
         }
 
-        return { success, message };
+        return { ok, message };
       },
 
       // проверяет подключение к Toggl и правильность workspace id
-      async checkTogglConnection(event) {
+      async checkTogglConnection() {
         let message = '';
-        // GET /api/v1/planfix/user
-        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/toggl/user');
-        let success = data.data && data.data.id && !data.errors;
+        // GET /api/v1/validate/toggl/user
+        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/validate/toggl/user');
+        let {ok, errors} = data;
 
         // commit message
-        if (success) {
+        if (ok) {
           message = 'Подключение успешно';
 
           // check workspace id
@@ -280,7 +280,7 @@
           let w = data.data.filter(workspace => workspace.id == this.$store.state.config.TogglWorkspaceID)
           if (w.length == 0) {
             message = 'Подкючение удалось, но workspace id ' + this.$store.state.config.TogglWorkspaceID + ' не найден';
-            success = false;
+            ok = false;
           }
           else {
             message = 'Подкючение удалось, иcпользуется ' + w[0].name;
@@ -288,28 +288,28 @@
           message += '. ' + workspacesMsg;
         }
         else {
-          message = 'Подключение не удалось: ' + data.errors.join(', ');
+          message = 'Подключение не удалось: ' + errors.join(', ');
         }
 
-        return { success, message };
+        return { ok, message };
       },
 
       // проверяет правильность аналитики Планфикса
-      async checkPlanfixAnalitic(event) {
+      async checkPlanfixAnalitic() {
         let message = '';
-        // GET /api/v1/planfix/user
-        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/planfix/analitic-ids');
-        let success = data.data && data.data.ID && !data.errors;
+        // GET /api/v1/validate/planfix/analitic
+        let {data} = await this.$axios.get(this.$store.state.apiUrl + '/validate/planfix/analitic');
+        let {ok, errors} = data;
 
         // commit message
-        if (success) {
+        if (ok) {
           message = 'Аналитика указана правильно';
         }
         else {
-          message = data.errors.join(', ');
+          message = errors.join(', ');
         }
 
-        return { success, message };
+        return { ok, message };
       }
     }
   }

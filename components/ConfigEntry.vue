@@ -75,10 +75,10 @@
         await this.$axios.post(this.$store.state.apiUrl + '/config/reload');
 
         // action
-        let {success, message} = await this.action(event);
+        let {ok, message} = await this.action(event);
 
         this.isSending = false;
-        this.success = success;
+        this.success = ok;
         this.message = message;
         console.log(message);
       },

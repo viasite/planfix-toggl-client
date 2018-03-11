@@ -4,14 +4,12 @@ node_js:
 script:
   - npm install
   - npm run generate
-  #- zip -5 -r -q planfix-toggl-client.zip .
 deploy:
   provider: pages
   local-dir: dist
-  github-token:
-    secure: wcYyZPer85m7SX2suSnSxCFXuB1VuDskSCFYd+A3GM/3UQvWaSqrT1aflLtXciDojwJzqvTmjMYYxttXa7zlAG2O1Qw4Q1BBTp+D6dmj70TSXmc3SBY06Tfoicf9EM8ytbbKLuYqwJs2nKp0RGpbLnhW6L7qzUtOoSMUByU8hfDsoWdtVK+O9sgGlRPqCRf8oyeQLbRsHvpObuWdYBShUAj94842SfSpRjMDTJRcHJxtIG7QSeiuoArp9YhABOgy1TyYsYCKJX2HeIVbePzD+NAoI6VzC/4avpy+JCtBKPkDFV5kAIfB9Hsc6UEbEaIV3UGeCzR+UvlbLK4dCGrvXhkwOiDKEGfIb/Wy6WL+6Ps0tQwbGF+BE7HGnXiOQtLEZT2ADu5lrU/OpJ/c+qZtaSZfbeOTcVki+UpROYyUZtvd7MUc0BGakaszDI66G7FLNhnytpgZTGInbtm1UzCOLuDW9odD2+SZ4uNNldmouToMC3759msh96VLryWCrMAqfoYvHLqZAVOckAb45qRzUIicwtGrVTUHlokz08oVRkRNheD+QjDR/dNfmXVKaCGOPiutcs8CD8pyx2KW8dfVOdiBz1JrxzBweZlPI67t88LPkNiuy/HRyHIgWRwrO+ilVwChc1gZZgcR7jLGfMAQVYLMdrXYIjqH+7mTzOv3AJM=
-#  file: dist/planfix-toggl-client.zip
   skip_cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: false
   on:
     branch: master
-#    tags: true
+    repo: viasite/planfix-toggl-client

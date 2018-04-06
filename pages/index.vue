@@ -50,10 +50,15 @@
           entries_last: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'last'}}),
         };
 
+        // sort by date desc
+        asyncData.entries_today.sort((a, b) => b.id - a.id);
+        asyncData.entries_pending.sort((a, b) => b.id - a.id);
+        asyncData.entries_last.sort((a, b) => b.id - a.id);
+
         asyncData.tabs = [
           {label: 'Сегодня', props: {entries: asyncData.entries_today}},
           {label: 'Ожидают', props: {entries: asyncData.entries_pending}},
-          {label: 'Последние', props: {entries: asyncData.entries_last}},
+          {label: 'Неделя', props: {entries: asyncData.entries_last}},
         ];
 
         asyncData.pages = [

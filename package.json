@@ -1,6 +1,6 @@
 {
-  "name": "planfix-toggl",
-  "version": "1.0.0",
+  "name": "planfix-toggl-client",
+  "version": "0.5.0",
   "description": "Send metrics from Toggl to Planfix",
   "author": "Stanislav Popov <popstas@gmail.com>",
   "private": true,
@@ -10,21 +10,28 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "postversion": "git push && npm run release",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "release": "conventional-github-releaser -p angular",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.1.1",
     "lodash": "^4.17.5",
-    "nuxt": "^1.4.0"
+    "nuxt": "^1.4.0",
+    "onsenui": "^2.9.2",
+    "vue-onsenui": "^2.5.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "conventional-changelog-cli": "^2.0.0",
+    "conventional-github-releaser": "^3.1.0",
     "cross-env": "^5.1.4",
     "eslint": "^4.18.2",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.3.0",
-    "onsenui": "^2.9.2",
-    "vue-onsenui": "^2.5.1"
+    "eslint-plugin-vue": "^4.3.0"
   }
 }

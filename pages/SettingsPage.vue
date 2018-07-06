@@ -2,6 +2,11 @@
   <v-ons-page>
     <v-ons-list>
 
+      <v-ons-list-item>
+        Основные секции имеют кнопку проверки правильности настроек.
+        После изменения настроек перезапустите сервер, чтобы всё применилось
+      </v-ons-list-item>
+
       <v-ons-list-header>Toggl</v-ons-list-header>
       <div>
         <ConfigEntry
@@ -259,7 +264,7 @@
           message = 'Подключение не удалось: ' + errors.join(', ');
         }
 
-        return { ok, message };
+        return {ok, message};
       },
 
       // проверяет подключение к Toggl и правильность workspace id
@@ -291,7 +296,7 @@
           message = 'Подключение не удалось: ' + errors.join(', ');
         }
 
-        return { ok, message };
+        return {ok, message};
       },
 
       // проверяет правильность аналитики Планфикса
@@ -309,7 +314,7 @@
           message = errors.join(', ');
         }
 
-        return { ok, message };
+        return {ok, message};
       }
     }
   }

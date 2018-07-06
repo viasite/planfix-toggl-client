@@ -45,10 +45,15 @@
       let apiUrl = store.state.apiUrl;
       try {
         asyncData = {
+          entries_current: [await app.$axios.$get(apiUrl + '/toggl/entries/current')],
           entries_today: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'today'}}),
           entries_pending: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'pending'}}),
           entries_last: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'last'}}),
         };
+
+        if(asyncData.entries_current[0].id == 0){
+          asyncData.entries_current = [];
+        }
 
         // sort by date desc
         asyncData.entries_today.sort((a, b) => b.id - a.id);
@@ -56,6 +61,7 @@
         asyncData.entries_last.sort((a, b) => b.id - a.id);
 
         asyncData.tabs = [
+          {label: 'Сейчас', props: {entries: asyncData.entries_current}},
           {label: 'Сегодня', props: {entries: asyncData.entries_today}},
           {label: 'Ожидают', props: {entries: asyncData.entries_pending}},
           {label: 'Неделя', props: {entries: asyncData.entries_last}},

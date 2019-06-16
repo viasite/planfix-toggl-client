@@ -9,6 +9,7 @@ export const state = () => ({
   config: {},
   temp: {},
   openSide: false,
+  // analitics: [],
 });
 
 export const mutations = {
@@ -27,6 +28,9 @@ export const mutations = {
   apiUrl: (state, newValue) => {
     state.apiUrl = newValue
   },
+  /* analitics: (state, newValue) => {
+    state.analitics = newValue
+  }, */
 };
 
 export const actions = {

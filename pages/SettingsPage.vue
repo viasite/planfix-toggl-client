@@ -80,6 +80,20 @@
 
       <v-ons-list-header>Аналитика Планфикса: названия полей</v-ons-list-header>
       <div>
+        <!-- <v-ons-list-item>
+          <div class="center">
+            <span class="list-item__title"></span>
+            <span class="list-item__subtitle">Тест селектов</span>
+            <v-ons-select style="width:100%" v-model="$store.state.config['planfixAnaliticName']">
+              <option
+                v-for="item in $store.state.analitics"
+                v-bind:key="item.ID"
+                :value="item.Name"
+              >{{ item.Name }}
+              </option>
+            </v-ons-select>
+          </div>
+        </v-ons-list-item> -->
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticName"

@@ -67,6 +67,9 @@
           {label: 'Неделя', props: {entries: asyncData.entries_last}},
         ];
 
+        // let analitics = await app.$axios.$get(apiUrl + '/planfix/analitics');
+        // store.commit('analitics', analitics.Analitics);
+
         asyncData.pages = [
           {name: 'Записи', page: EntriesTabsPage},
           {name: 'Настройки', page: SettingsPage},

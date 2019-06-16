@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import EntriesList from '~/components/EntriesList'
-  import EntriesPage from '~/pages/EntriesPage'
+  import EntriesList from '~/components/EntriesList';
+  import EntriesPage from '~/components/EntriesPage';
 
   export default {
     props: ['tabs'],

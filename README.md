@@ -10,5 +10,11 @@
 - `release` - сам по себе не используется, только через `version`
 - `deploy` - для ручной выкладки на `gh-pages`, мимо travis
 
+## Установка
+Используйте yarn, npm не работает, возникает ошибка на import pages/index.vue, см:
+
+- https://github.com/nuxt/nuxt.js/issues/4839
+- https://github.com/webpack/webpack/issues/8656
+
 ## TODO:
 - автообновление списка

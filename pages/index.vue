@@ -26,8 +26,8 @@
 
 <script>
   import PageToolbar from '~/components/PageToolbar'
-  import EntriesTabsPage from '~/pages/EntriesTabsPage'
-  import SettingsPage from '~/pages/SettingsPage'
+  import EntriesTabsPage from '~/components/EntriesTabsPage'
+  import SettingsPage from '~/components/SettingsPage'
 
   export default {
     components: {
@@ -89,5 +89,10 @@
         openSide: false
       }
     },
+    created() {
+      setInterval(() => {
+        window.location.reload(true);
+      }, 300000);
+    }
   }
 </script>

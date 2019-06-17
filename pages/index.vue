@@ -102,8 +102,6 @@
           {label: 'Неделя', props: {entries: this.entries.last}},
         ];
         this.$store.commit('tabs', tabs);
-
-        this.$store.commit('title', `${this.entries.current[0].description} - planfix-toggl`);
       },
 
       setUpdateIntervals(currentTimeout, otherTimeout) {
@@ -142,7 +140,7 @@
     },
 
     head() {
-      return { title: this.$store.state.title };
+      return { title: `${this.entries.current[0].description} - planfix-toggl` };
     }
   }
 </script>

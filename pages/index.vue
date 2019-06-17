@@ -139,6 +139,10 @@
     onActive() {
       // console.log('active');
       this.setUpdateIntervals(10000, 600000);
+    },
+
+    head() {
+      return { title: this.$store.state.title };
     }
   }
 </script>

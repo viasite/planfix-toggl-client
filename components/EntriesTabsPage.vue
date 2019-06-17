@@ -14,6 +14,12 @@
   </v-ons-tabbar>
 </template>
 
+<style>
+ons-list-header {
+  z-index: 20003;
+}
+</style>
+
 <script>
   import EntriesList from '~/components/EntriesList';
   import EntriesPage from '~/components/EntriesPage';

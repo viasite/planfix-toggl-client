@@ -1,6 +1,9 @@
 <template>
-  
+
   <div class="entries">
+    <!-- <ons-pull-hook id="pull-hook" :action="refreshAll">
+      Pull to refresh
+    </ons-pull-hook> -->
     <div v-for="entry in entries" v-bind:key="entry.id">
       <Entry :entry="entry"></Entry>
     </div>

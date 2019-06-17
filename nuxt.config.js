@@ -5,7 +5,8 @@ module.exports = {
     '@nuxtjs/style-resources'
   ],
   plugins: [
-    { src: '~/plugins/onsenui', ssr: false }
+    { src: '~/plugins/onsenui', ssr: false },
+    { src: '~/plugins/idle', ssr: false }
   ],
   /*
   ** Headers of the page

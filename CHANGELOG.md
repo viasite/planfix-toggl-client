@@ -1,5 +1,29 @@
-<a name="0.6.0"></a>
-# [0.6.0](https://github.com/viasite/planfix-toggl-client/compare/0.5.0...0.6.0) (2018-06-18)
+# [0.7.0](https://github.com/viasite/planfix-toggl-client/compare/0.6.1...0.7.0) (2019-06-17)
+
+
+### Bug Fixes
+
+* analytics experiments ([5cde86f](https://github.com/viasite/planfix-toggl-client/commit/5cde86f))
+* разные title и название приложения в шапке ([7e651a0](https://github.com/viasite/planfix-toggl-client/commit/7e651a0))
+
+
+### Features
+
+* автообновление вкладок ([a5bb9ef](https://github.com/viasite/planfix-toggl-client/commit/a5bb9ef))
+* текущая задача в title ([a92a4ef](https://github.com/viasite/planfix-toggl-client/commit/a92a4ef))
+
+
+
+## [0.6.1](https://github.com/viasite/planfix-toggl-client/compare/v0.6.0...0.6.1) (2018-07-06)
+
+
+### Features
+
+* вкладка Сейчас с текущей запущенной записью ([13f64dc](https://github.com/viasite/planfix-toggl-client/commit/13f64dc))
+
+
+
+# [0.6.0](https://github.com/viasite/planfix-toggl-client/compare/0.5.0...v0.6.0) (2018-06-18)
 
 
 ### Features
@@ -9,7 +33,6 @@
 
 
 
-<a name="0.5.0"></a>
 # [0.5.0](https://github.com/viasite/planfix-toggl-client/compare/0.4.1...0.5.0) (2018-03-11)
 
 
@@ -40,7 +63,6 @@
 
 
 
-<a name="0.4.0"></a>
 # [0.4.0](https://github.com/viasite/planfix-toggl-client/compare/6465acf...0.4.0) (2018-02-10)
 
 

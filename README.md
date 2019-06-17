@@ -15,6 +15,3 @@
 
 - https://github.com/nuxt/nuxt.js/issues/4839
 - https://github.com/webpack/webpack/issues/8656
-
-## TODO:
-- автообновление списка

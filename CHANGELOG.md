@@ -1,4 +1,14 @@
-# [0.7.0](https://github.com/viasite/planfix-toggl-client/compare/0.6.1...0.7.0) (2019-06-17)
+# [0.8.0](https://github.com/viasite/planfix-toggl-client/compare/v0.7.0...v0.8.0) (2019-06-24)
+
+
+### Bug Fixes
+
+* ajaxData -> updateData, получение данных без задержки первой отрисовки ([f69e28a](https://github.com/viasite/planfix-toggl-client/commit/f69e28a))
+* idle time 10 -> 60 sec ([48ded1a](https://github.com/viasite/planfix-toggl-client/commit/48ded1a))
+
+
+
+# [0.7.0](https://github.com/viasite/planfix-toggl-client/compare/0.6.1...v0.7.0) (2019-06-17)
 
 
 ### Bug Fixes

@@ -27,7 +27,7 @@
   width: 2rem;
 }
 .entry__second {
-  margin-left: 2rem;
+  margin-left: 2.3rem;
 }
 .entry__project {
 }
@@ -65,7 +65,10 @@ export default {
   computed: {
     duration() {
       // normal entry
+      // console.log('entry: ', this.entry);
       if (this.entry.dur > 0) return Math.round(this.entry.dur / 1000 / 60);
+
+      if (this.entry.dur === 0) return 0;
 
       // running entry
       const seconds = Math.round(this.entry.dur + this.currentTickTime / 1000);

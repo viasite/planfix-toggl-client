@@ -45,39 +45,11 @@
       let apiUrl = store.state.apiUrl;
       try {
         asyncData = {
-          entries: {
-            current: [await app.$axios.$get(apiUrl + '/toggl/entries/current')],
-            today: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'today'}}),
-            pending: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'pending'}}),
-            last: await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'last'}}),
-          }
         };
-
-        if(asyncData.entries.current[0].id == 0){
-          asyncData.entries.current = [];
-        }
-
-        // sort by date desc
-        asyncData.entries.today.sort((a, b) => b.id - a.id);
-        asyncData.entries.pending.sort((a, b) => b.id - a.id);
-        asyncData.entries.last.sort((a, b) => b.id - a.id);
-
-        asyncData.tabs = [
-          {label: 'Сейчас', props: {entries: asyncData.entries.current}},
-          {label: 'Сегодня', props: {entries: asyncData.entries.today}},
-          {label: 'Ожидают', props: {entries: asyncData.entries.pending}},
-          {label: 'Неделя', props: {entries: asyncData.entries.last}},
-        ];
 
         // let analitics = await app.$axios.$get(apiUrl + '/planfix/analitics');
         // store.commit('analitics', analitics.Analitics);
 
-        asyncData.pages = [
-          {name: 'Записи', page: EntriesTabsPage},
-          {name: 'Настройки', page: SettingsPage},
-        ];
-
-        store.commit('tabs', asyncData.tabs);
       }
       catch (e) {
         console.log('error while get data');
@@ -104,6 +76,28 @@
         this.$store.commit('tabs', tabs);
       },
 
+      async updateData() {
+        this.entries = this.entries || { current: [], today: [], pending: [], last: [] };
+
+        this.entries.current = [await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries/current')];
+        this.entries.today = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'today'}});
+        this.entries.pending = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'pending'}});
+        this.entries.last = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'last'}});
+
+        // check for empty current
+        // console.log('this.entries.current: ', this.entries.current);
+        if(this.entries.current[0].id == 0){
+          this.entries.current = [];
+        }
+
+        // sort by date desc
+        this.entries.today.sort((a, b) => b.id - a.id);
+        this.entries.pending.sort((a, b) => b.id - a.id);
+        this.entries.last.sort((a, b) => b.id - a.id);
+
+        this.updateTabs();
+      },
+
       setUpdateIntervals(currentTimeout, otherTimeout) {
         clearInterval(this.currentInterval);
         clearInterval(this.otherInterval);
@@ -118,15 +112,31 @@
         this.otherInterval = setInterval(async () => {
           // console.log('other data');
           // console.log(new Date());
-          this.entries.today = await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'today'}});
-          this.entries.pending = await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'pending'}});
-          this.entries.last = await app.$axios.$get(apiUrl + '/toggl/entries', {params: {type: 'last'}});
+          this.entries.today = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'today'}});
+          this.entries.pending = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'pending'}});
+          this.entries.last = await this.$axios.$get(this.$store.state.apiUrl + '/toggl/entries', {params: {type: 'last'}});
+          // console.log('this.entries: ', this.entries);
           this.updateTabs();
         }, otherTimeout);
       }
     },
     created() {
       // console.log('created');
+
+      this.pages = [
+        {name: 'Записи', page: EntriesTabsPage},
+        {name: 'Настройки', page: SettingsPage},
+      ];
+
+      const tabs = [
+        {label: 'Сейчас', props: {entries: []}},
+        {label: 'Сегодня', props: {entries: []}},
+        {label: 'Ожидают', props: {entries: []}},
+        {label: 'Неделя', props: {entries: []}},
+      ];
+      this.$store.commit('tabs', tabs);
+
+      this.updateData();
       this.setUpdateIntervals(10000, 600000);
     },
 
@@ -134,12 +144,16 @@
       // console.log('idle');
       this.setUpdateIntervals(300000, 1800000);
     },
-    onActive() {
+
+    async onActive() {
       // console.log('active');
+
+      this.updateData();
       this.setUpdateIntervals(10000, 600000);
     },
 
     head() {
+      if (!this.entries.current) return 'planfix-toggl';
       return { title: `${this.entries.current[0].description} - planfix-toggl` };
     }
   }

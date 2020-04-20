@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/viasite/planfix-toggl-client/compare/v0.8.0...v0.8.1) (2020-04-20)
+
+
+### Bug Fixes
+
+* юзабилити в настройках ([c7dc5a1](https://github.com/viasite/planfix-toggl-client/commit/c7dc5a1))
+
+
+
 # [0.8.0](https://github.com/viasite/planfix-toggl-client/compare/v0.7.0...v0.8.0) (2019-06-24)
 
 

@@ -105,49 +105,49 @@
           name=""
           config-name="PlanfixAnaliticName"
           type="text"
-          description="выработка"
+          description="Название аналитики (не забудьте сохранить её перед проверкой), например, 'Выработка'"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticTypeName"
           type="text"
-          description="вид работы (справочник работ)"
+          description="Название поля выбора записи справочника, например, 'Вид работы'"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticTypeValue"
           type="text"
-          description="поминутная работа программиста (вид работы)"
+          description="Название записи справочника из предыдущего поля, измеряемой в минутах, например, 'Поминутная работа программиста'"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticCountName"
           type="text"
-          description="кол-во (минут)"
+          description="Название поля количества, сюда будет попадать кол-во минут, например, 'Количество'"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticCommentName"
           type="text"
-          description="комментарий / ссылка (текст, описание аналитики)"
+          description="Название поля комментария, сюда будет попадать название toggl записи"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticDateName"
           type="text"
-          description="дата (день, без времени)"
+          description="Название поля даты (день, без времени)"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAnaliticUsersName"
           type="text"
-          description="сотрудник (мультиполе сотрудников)"
+          description="Название поля сотрудника (мультиполе сотрудников)"
         ></ConfigEntry>
 
         <ConfigEntry
@@ -193,7 +193,7 @@
 
       <v-ons-list-header>Старые настройки подключения через SMTP</v-ons-list-header>
       <ons-list-item expandable>
-        <div class="expandable-button">Нажмите (но лучше не надо)</div>
+        <div class="expandable-button">Если у вас бесплатный аккаунт</div>
         <div class="expandable-content">
           <ConfigEntry
             name="Host"

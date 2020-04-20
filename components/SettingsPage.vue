@@ -7,20 +7,27 @@
         После изменения настроек перезапустите сервер, чтобы всё применилось
       </v-ons-list-item>
 
+      <ConfigEntry
+        name=""
+        config-name="DryRun"
+        type="switch"
+        description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются. Включите, пока не заработает"
+      ></ConfigEntry>
+
       <v-ons-list-header>Toggl</v-ons-list-header>
       <div>
         <ConfigEntry
           name=""
           config-name="TogglAPIToken"
           type="password"
-          description="Токен Toggl, в настройках profile"
+          description="Токен Toggl, в <a target=_blank href=https://toggl.com/app/profile>настройках profile</a>"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="TogglWorkspaceID"
           type="number"
-          description="Toggl workspace ID, посмотрите в URL в веб-интерфейсе Toggl"
+          description="Toggl workspace ID, в URL в <a target=_blank href=https://toggl.com/app/settings>веб-интерфейса Toggl</a>"
         ></ConfigEntry>
 
         <ConfigEntry
@@ -38,35 +45,35 @@
           name=""
           config-name="PlanfixAccount"
           type="text"
-          description="Поддомен вашего Планфикс аккаунта"
+          description="Название вашего Планфикс аккаунта (mycompany для mycompany.planfix.ru"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixUserName"
           type="text"
-          description="Логин"
+          description="Логин вашего пользователя в Планфиксе"
         ></ConfigEntry>
 
         <ConfigEntry
           name="Пароль"
           config-name="PlanfixUserPassword"
           type="password"
-          description=""
+          description="Ваш пароль в Планфиксе"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAPIKey"
           type="password"
-          description="Приватный API ключ, попросите у владельца аккаунта"
+          description="Приватный API ключ, <br>попросите у владельца аккаунта, <a target=_blank href=https://planfix.ru/docs/ПланФикс_API:_Авторизация_по_токену>инструкция</a>"
         ></ConfigEntry>
 
         <ConfigEntry
           name=""
           config-name="PlanfixAPIUrl"
           type="text"
-          description="URL API Планфикса, для аккаунтов в России он будет другим"
+          description="URL API Планфикса, <br>для аккаунтов в России он будет <a target=_blank href=https://planfix.ru/docs/Введение>другим</a>"
         ></ConfigEntry>
 
         <ConfigEntry
@@ -170,13 +177,6 @@
 
         <ConfigEntry
           name=""
-          config-name="DryRun"
-          type="switch"
-          description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются"
-        ></ConfigEntry>
-
-        <ConfigEntry
-          name=""
           config-name="TogglSentTag"
           type="text"
           description="тег, который ставится отправленным toggl-записям"
@@ -192,54 +192,69 @@
 
 
       <v-ons-list-header>Старые настройки подключения через SMTP</v-ons-list-header>
-      <div>
-        <ConfigEntry
-          name="Host"
-          config-name="SMTPHost"
-          type="text"
-          description=""
-        ></ConfigEntry>
+      <ons-list-item expandable>
+        <div class="expandable-button">Нажмите (но лучше не надо)</div>
+        <div class="expandable-content">
+          <ConfigEntry
+            name="Host"
+            config-name="SMTPHost"
+            type="text"
+            description=""
+          ></ConfigEntry>
 
-        <ConfigEntry
-          name="Port"
-          config-name="SMTPPort"
-          type="number"
-          description=""
-        ></ConfigEntry>
+          <ConfigEntry
+            name="Port"
+            config-name="SMTPPort"
+            type="number"
+            description=""
+          ></ConfigEntry>
 
-        <ConfigEntry
-          name="Логин"
-          config-name="SMTPLogin"
-          type="text"
-          description=""
-        ></ConfigEntry>
+          <ConfigEntry
+            name="Логин"
+            config-name="SMTPLogin"
+            type="text"
+            description=""
+          ></ConfigEntry>
 
-        <ConfigEntry
-          name="Пароль"
-          config-name="SMTPPassword"
-          type="password"
-          description=""
-        ></ConfigEntry>
+          <ConfigEntry
+            name="Пароль"
+            config-name="SMTPPassword"
+            type="password"
+            description=""
+          ></ConfigEntry>
 
-        <ConfigEntry
-          name="From"
-          config-name="SMTPEmailFrom"
-          type="text"
-          description="обычно совпадает с логином"
-        ></ConfigEntry>
+          <ConfigEntry
+            name="From"
+            config-name="SMTPEmailFrom"
+            type="text"
+            description="обычно совпадает с логином"
+          ></ConfigEntry>
 
-        <ConfigEntry
-          name="From"
-          config-name="PlanfixAuthorName"
-          type="text"
-          description="Имя Фамилия автора, будет приходить в письме для связи"
-        ></ConfigEntry>
-      </div>
+          <ConfigEntry
+            name="From"
+            config-name="PlanfixAuthorName"
+            type="text"
+            description="Имя Фамилия автора, будет приходить в письме для связи"
+          ></ConfigEntry>
+        </div>
+      </ons-list-item>
 
 
     </v-ons-list>
   </v-ons-page>
 </template>
+
+<style>
+ons-input:hover {
+  background: #eee;
+}
+ons-list-item[expandable] {
+  padding: 0;
+}
+.expandable-button {
+  padding-left: 15px;
+}
+</style>
 
 <script type="text/javascript">
   import PageToolbar from '~/components/PageToolbar'

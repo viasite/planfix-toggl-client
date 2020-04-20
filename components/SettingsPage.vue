@@ -11,7 +11,7 @@
         name=""
         config-name="DryRun"
         type="switch"
-        description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются. Включите, пока не заработает"
+        description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются. <br>Включите, пока не заработает. <br>Нажмите 'Проверить', чтобы настройка сохранилась"
       ></ConfigEntry>
 
       <v-ons-list-header>Toggl</v-ons-list-header>

@@ -1,3 +1,15 @@
+## [0.8.2](https://github.com/viasite/planfix-toggl-client/compare/v0.8.1...v0.8.2) (2020-04-21)
+
+
+### Bug Fixes
+
+* в заголовок добавлена версия ([5c1168e](https://github.com/viasite/planfix-toggl-client/commit/5c1168e))
+* понятные названия полей ([9875991](https://github.com/viasite/planfix-toggl-client/commit/9875991))
+* сообщение о криво сохраняющейся настройке "Тестовый режим" ([52c531a](https://github.com/viasite/planfix-toggl-client/commit/52c531a))
+* фавиконка с примесью toggl ([3e1cc3b](https://github.com/viasite/planfix-toggl-client/commit/3e1cc3b))
+
+
+
 ## [0.8.1](https://github.com/viasite/planfix-toggl-client/compare/v0.8.0...v0.8.1) (2020-04-20)
 
 

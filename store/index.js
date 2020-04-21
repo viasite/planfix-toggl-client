@@ -1,11 +1,12 @@
 let apiUrl = 'https://localhost:8097/api/v1';
+import packageJson from '~/package.json'
 // let apiUrl = 'http://localhost:8096/api/v1';
 
 export const state = () => ({
   apiUrl: apiUrl,
   tabIndex: 0,
   tabs: [],
-  title: 'planfix-toggl',
+  title: 'planfix-toggl-client ' + packageJson.version,
   config: {},
   temp: {},
   openSide: false,

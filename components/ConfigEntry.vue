@@ -30,7 +30,7 @@
     <div class="right" v-if="type=='switch'">
       <v-ons-switch
         v-model="$store.state.config[configName]"
-        @input="delayedStoreConfig"
+        @change="delayedStoreConfig"
       ></v-ons-switch>
     </div>
 

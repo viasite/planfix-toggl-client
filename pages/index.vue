@@ -140,6 +140,14 @@
       this.setUpdateIntervals(10000, 600000);
     },
 
+    mounted() {
+      // #settings
+      if (this.$route.hash == '#settings') {
+        this.$route.hash == '';
+        this.currentPage = 'SettingsPage'
+      }
+    },
+
     onIdle() {
       // console.log('idle');
       this.setUpdateIntervals(300000, 1800000);

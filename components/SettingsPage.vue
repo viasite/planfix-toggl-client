@@ -11,7 +11,7 @@
         name=""
         config-name="DryRun"
         type="switch"
-        description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются. <br>Включите, пока не заработает. <br>Нажмите 'Проверить', чтобы настройка сохранилась"
+        description="Тестовый режим, когда данные в Планфиксе и Toggl не меняются"
       ></ConfigEntry>
 
       <v-ons-list-header>Toggl</v-ons-list-header>
@@ -166,6 +166,13 @@
           config-name="SendInterval"
           type="slider" min="0" max="240"
           :description="'Интервал отправки данных в Планфикс, мин: ' + $store.state.config.SendInterval"
+        ></ConfigEntry>
+
+        <ConfigEntry
+          name=""
+          config-name="CheckNewVersion"
+          type="switch"
+          description="Проверять доступность новой версии"
         ></ConfigEntry>
 
         <ConfigEntry

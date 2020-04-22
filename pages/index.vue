@@ -2,7 +2,7 @@
   <div>
     <v-ons-splitter>
       <v-ons-splitter-side
-        swipeable width="150px" collapse="" side="right"
+        width="150px" collapse="" side="right"
         :open.sync="$store.state.openSide"
       >
         <v-ons-page>

@@ -1,3 +1,18 @@
+## [0.8.3](https://github.com/viasite/planfix-toggl-client/compare/v0.8.2...v0.8.3) (2020-04-22)
+
+
+### Bug Fixes
+
+* remove swipe menu ([2369c84](https://github.com/viasite/planfix-toggl-client/commit/2369c84))
+* сохранение состояния переключателей сразу ([f57172a](https://github.com/viasite/planfix-toggl-client/commit/f57172a))
+
+
+### Features
+
+* #settings page url ([113e529](https://github.com/viasite/planfix-toggl-client/commit/113e529))
+
+
+
 ## [0.8.2](https://github.com/viasite/planfix-toggl-client/compare/v0.8.1...v0.8.2) (2020-04-21)
 
 

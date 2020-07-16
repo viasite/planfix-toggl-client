@@ -21,7 +21,7 @@
     "@nuxtjs/axios": "^5.1.1",
     "@nuxtjs/style-resources": "^0.1.2",
     "idle-vue": "^2.0.5",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "nuxt": "^2.8.1",
     "onsenui": "^2.9.2",
     "vue-onsenui": "^2.5.1"

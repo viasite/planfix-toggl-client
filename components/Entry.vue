@@ -6,7 +6,7 @@
     <div class="entry__second">
       <span class="entry__project" :style="'color:' + entry.project_hex_color">{{ entry.project }}</span>
       <a v-if="entry.planfix.task_id" class="entry__link"
-         :href="'https://' + $store.state.config.PlanfixAccount + '.planfix.ru/task/' + entry.planfix.task_id"
+         :href="taskUrl"
          target="_blank">
         #{{ entry.planfix.task_id }}
       </a>
@@ -80,6 +80,11 @@ export default {
       t.m = t.m.toString().padStart(2, '0');
       t.s = t.s.toString().padStart(2, '0');
       return `${t.h}:${t.m}:${t.s}`;
+    },
+
+    taskUrl() {
+      return 'https://' + this.$store.state.config.PlanfixAccount
+      + '.planfix.ru/task/' + this.entry.planfix.task_id;
     }
   },
 
@@ -100,6 +105,12 @@ export default {
     // current running entry
     if (this.entry.dur < 1) {
       this.startTick();
+
+      // https://localhost:8097/#current-go
+      if (this.$route.hash == '#current-go' && this.entry.planfix.task_id > 0) {
+        this.$route.hash == '';
+        window.location.href = this.taskUrl
+      }
     }
   },
 

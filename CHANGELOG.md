@@ -1,3 +1,17 @@
+## [0.8.4](https://github.com/viasite/planfix-toggl-client/compare/v0.8.3...v0.8.4) (2020-07-31)
+
+
+### Bug Fixes
+
+* проверять доступность новой версии в настройках ([23ed35f](https://github.com/viasite/planfix-toggl-client/commit/23ed35f))
+
+
+### Features
+
+* ссылка на текущую задачу #current-go ([c7c9845](https://github.com/viasite/planfix-toggl-client/commit/c7c9845))
+
+
+
 ## [0.8.3](https://github.com/viasite/planfix-toggl-client/compare/v0.8.2...v0.8.3) (2020-04-22)
 
 
@@ -102,10 +116,10 @@
 
 * EantriesPage, main toolbar, подготовка к выводу вкладками ([14f6ca7](https://github.com/viasite/planfix-toggl-client/commit/14f6ca7))
 * onsenui элементы появились ([170ed75](https://github.com/viasite/planfix-toggl-client/commit/170ed75))
-* **ui:** вкладки для разных списков ([5f40a1d](https://github.com/viasite/planfix-toggl-client/commit/5f40a1d))
 * валидация настроек Toggl и Планфикса ([91eb5b5](https://github.com/viasite/planfix-toggl-client/commit/91eb5b5)), closes [viasite/planfix-toggl-server#7](https://github.com/viasite/planfix-toggl-server/issues/7)
 * страница настроек SettingsPage, ConfigEntry, сохранение конфига ([91ab3f2](https://github.com/viasite/planfix-toggl-client/commit/91ab3f2)), closes [viasite/planfix-toggl-server#7](https://github.com/viasite/planfix-toggl-server/issues/7)
 * цветные сообщения о валидации ([4a21603](https://github.com/viasite/planfix-toggl-client/commit/4a21603))
+* **ui:** вкладки для разных списков ([5f40a1d](https://github.com/viasite/planfix-toggl-client/commit/5f40a1d))
 
 
 

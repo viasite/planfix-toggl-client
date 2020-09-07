@@ -146,6 +146,15 @@
         this.$route.hash == '';
         this.currentPage = 'SettingsPage'
       }
+
+      // #today
+      if (this.$route.hash == '#today') {
+        this.$route.hash == '';
+        this.currentPage = 'EntriesTabsPage';
+        setTimeout(() => {
+          this.$store.commit('tabIndex', 1);
+        }, 50);
+      }
     },
 
     onIdle() {
